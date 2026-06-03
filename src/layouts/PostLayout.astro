@@ -13,7 +13,7 @@ const formattedDate = formatDate(post.data.pubDate);
 const updatedDate = post.data.updatedDate ? formatDate(post.data.updatedDate) : null;
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout title={post.data.title} description={post.data.description} type="article">
   <article class="post-page">
     <header class="post-hero">
       <p class="eyebrow">{formattedDate}</p>

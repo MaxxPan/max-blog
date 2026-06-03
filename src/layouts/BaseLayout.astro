@@ -6,13 +6,17 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  type?: 'website' | 'article';
 }
 
 const {
   title = 'Max Blog',
   description = 'A compact engineering blog for notes, essays, and project write-ups.',
+  type = 'website',
 } = Astro.props;
 const pageTitle = title === 'Max Blog' ? title : `${title} | Max Blog`;
+const site = (Astro.site?.toString() ?? 'https://maxxpan.github.io/max-blog/').replace(/\/$/, '');
+const canonicalUrl = `${site}${Astro.url.pathname}`;
 ---
 
 <!doctype html>
@@ -24,6 +28,16 @@ const pageTitle = title === 'Max Blog' ? title : `${title} | Max Blog`;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" type="application/rss+xml" title="Max Blog RSS" href="/rss.xml" />
+    <meta property="og:site_name" content="Max Blog" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
     <title>{pageTitle}</title>
   </head>
   <body>
