@@ -240,6 +240,10 @@ h1 {
   max-width: 760px;
 }
 
+.page-heading {
+  max-width: 760px;
+}
+
 .post-hero h1 {
   max-width: 15ch;
   font-size: clamp(2.7rem, 8vw, 5.2rem);
@@ -261,6 +265,60 @@ h1 {
   background: var(--surface);
   color: var(--muted);
   font-size: 0.85rem;
+}
+
+.tag-list.compact {
+  margin-top: 0.85rem;
+}
+
+.tag-list.compact li {
+  font-size: 0.78rem;
+}
+
+.updated-date {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.archive-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  max-width: 860px;
+}
+
+.archive-item a {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: clamp(1rem, 3vw, 1.35rem);
+  background: color-mix(in srgb, var(--surface) 84%, transparent);
+  text-decoration: none;
+}
+
+.archive-item a:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  box-shadow: var(--shadow);
+}
+
+.archive-item time {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.archive-item h2 {
+  margin: 0.45rem 0 0;
+  font-size: clamp(1.45rem, 4vw, 2rem);
+  line-height: 1.15;
+}
+
+.archive-item p {
+  max-width: 680px;
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+  line-height: 1.65;
 }
 
 .prose {

@@ -1,17 +1,15 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
+import { formatDate } from '../lib/format';
 
 interface Props {
   post: CollectionEntry<'posts'>;
 }
 
 const { post } = Astro.props;
-const formattedDate = new Intl.DateTimeFormat('en', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-}).format(post.data.pubDate);
+const formattedDate = formatDate(post.data.pubDate);
+const updatedDate = post.data.updatedDate ? formatDate(post.data.updatedDate) : null;
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
@@ -20,6 +18,7 @@ const formattedDate = new Intl.DateTimeFormat('en', {
       <p class="eyebrow">{formattedDate}</p>
       <h1>{post.data.title}</h1>
       <p class="lede">{post.data.description}</p>
+      {updatedDate && <p class="updated-date">Updated {updatedDate}</p>}
       <ul class="tag-list" aria-label="Post tags">
         {post.data.tags.map((tag) => <li>{tag}</li>)}
       </ul>
