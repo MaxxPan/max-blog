@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTagGroups, getTagPath } from '../../lib/tags';
+
+const tagGroups = await getTagGroups();
+---
+
+<BaseLayout title="Tags" description="Browse Max Blog posts by tag.">
+  <section class="page-heading">
+    <p class="eyebrow">Topics</p>
+    <h1>Tags</h1>
+    <p class="lede">Browse published writing by recurring topic.</p>
+  </section>
+
+  <section class="tag-cloud" aria-label="All tags">
+    {
+      tagGroups.map((group) => (
+        <a href={getTagPath(group.tag)}>
+          <span>{group.tag}</span>
+          <strong>{group.posts.length}</strong>
+        </a>
+      ))
+    }
+  </section>
+</BaseLayout>

@@ -267,6 +267,10 @@ h1 {
   font-size: 0.85rem;
 }
 
+.tag-list a {
+  text-decoration: none;
+}
+
 .tag-list.compact {
   margin-top: 0.85rem;
 }
@@ -288,7 +292,7 @@ h1 {
   max-width: 860px;
 }
 
-.archive-item a {
+.archive-item > a {
   display: block;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -297,7 +301,7 @@ h1 {
   text-decoration: none;
 }
 
-.archive-item a:hover {
+.archive-item > a:hover {
   border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
   box-shadow: var(--shadow);
 }
@@ -319,6 +323,47 @@ h1 {
   margin: 0.65rem 0 0;
   color: var(--muted);
   line-height: 1.65;
+}
+
+.archive-tag-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.65rem 0 0 1rem;
+}
+
+.archive-tag-links a {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  max-width: 780px;
+}
+
+.tag-cloud a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 0.85rem;
+  background: var(--surface);
+  text-decoration: none;
+}
+
+.tag-cloud a:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  box-shadow: var(--shadow);
+}
+
+.tag-cloud strong {
+  color: var(--accent);
+  font-size: 0.85rem;
 }
 
 .prose {

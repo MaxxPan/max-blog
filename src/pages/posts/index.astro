@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { formatDate } from '../../lib/format';
 import { getPostPath, getPublishedPosts } from '../../lib/posts';
+import { getTagPath } from '../../lib/tags';
 
 const posts = await getPublishedPosts();
 ---
@@ -27,6 +28,9 @@ const posts = await getPublishedPosts();
               {post.data.tags.map((tag) => <li>{tag}</li>)}
             </ul>
           </a>
+          <div class="archive-tag-links" aria-label={`${post.data.title} tag links`}>
+            {post.data.tags.map((tag) => <a href={getTagPath(tag)}>{tag}</a>)}
+          </div>
         </article>
       ))
     }
