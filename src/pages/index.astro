@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { formatDate } from '../lib/format';
+import { getPostPath, getPublishedPosts } from '../lib/posts';
+import { withBase } from '../lib/urls';
+
+const posts = (await getPublishedPosts()).slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="home-grid">
+    <div class="hero">
+      <p class="eyebrow">Engineer Notes</p>
+      <h1>Max Blog</h1>
+      <p class="lede">
+        Notes from building software: delivery loops, readable systems, web craft,
+        and the small decisions that keep projects maintainable.
+      </p>
+      <div class="social-row" aria-label="Social links">
+        <a href="https://github.com/MaxxPan">GitHub</a>
+        <a href={withBase('/rss.xml')}>RSS</a>
+        <a href="mailto:hello@example.com">Email</a>
+      </div>
+    </div>
+
+    <section class="latest-panel" aria-labelledby="latest-posts">
+      <div class="section-heading">
+        <p class="eyebrow">Latest</p>
+        <h2 id="latest-posts">Recent writing</h2>
+      </div>
+      <div class="post-card-list">
+        {
+          posts.map((post) => (
+            <article class="post-card">
+              <a href={getPostPath(post)}>
+                <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </section>
+</BaseLayout>

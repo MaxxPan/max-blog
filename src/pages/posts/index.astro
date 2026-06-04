@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../lib/format';
+import { getPostPath, getPublishedPosts } from '../../lib/posts';
+import { getTagPath } from '../../lib/tags';
+
+const posts = await getPublishedPosts();
+---
+
+<BaseLayout title="Posts" description="All published essays and notes from Max Blog.">
+  <section class="page-heading">
+    <p class="eyebrow">Archive</p>
+    <h1>Posts</h1>
+    <p class="lede">All published writing, sorted from newest to oldest.</p>
+  </section>
+
+  <section class="archive-list" aria-label="Published posts">
+    {
+      posts.map((post) => (
+        <article class="archive-item">
+          <a href={getPostPath(post)}>
+            <div>
+              <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+            </div>
+            <ul class="tag-list compact" aria-label={`${post.data.title} tags`}>
+              {post.data.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </a>
+          <div class="archive-tag-links" aria-label={`${post.data.title} tag links`}>
+            {post.data.tags.map((tag) => <a href={getTagPath(tag)}>{tag}</a>)}
+          </div>
+        </article>
+      ))
+    }
+  </section>
+</BaseLayout>

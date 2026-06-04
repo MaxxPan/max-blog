@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/urls';
+
+const skills = ['TypeScript', 'Astro', 'Node.js', 'CI/CD', 'Frontend systems', 'Technical writing'];
+const projects = [
+  {
+    name: 'Personal Blog',
+    description: 'A small publishing system for notes, essays, and project write-ups.',
+  },
+  {
+    name: 'Development Loops',
+    description: 'Patterns for keeping local validation and CI aligned during incremental work.',
+  },
+];
+---
+
+<BaseLayout title="About" description="About Max and the focus of this engineering blog.">
+  <section class="about-layout">
+    <div class="page-heading">
+      <p class="eyebrow">About</p>
+      <h1>Engineer, builder, writer.</h1>
+      <p class="lede">
+        I use this site to keep durable notes on software delivery, readable systems,
+        and the practical details that make small projects easier to maintain.
+      </p>
+    </div>
+
+    <div class="about-sections">
+      <section>
+        <h2>Focus</h2>
+        <p>
+          The writing here favors concrete engineering tradeoffs over broad commentary:
+          how a project is structured, how checks run, how content is modeled, and how
+          interfaces stay readable as they grow.
+        </p>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <ul class="inline-list">
+          {skills.map((skill) => <li>{skill}</li>)}
+        </ul>
+      </section>
+
+      <section>
+        <h2>Projects</h2>
+        <div class="mini-list">
+          {
+            projects.map((project) => (
+              <article>
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>
+          Find me on <a href="https://github.com/MaxxPan">GitHub</a>, follow updates
+          through <a href={withBase('/rss.xml')}>RSS</a>, or send a note to
+          <a href="mailto:hello@example.com">hello@example.com</a>.
+        </p>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

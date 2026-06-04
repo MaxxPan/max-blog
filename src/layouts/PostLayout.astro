@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import { formatDate } from '../lib/format';
+import { getTagPath } from '../lib/tags';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const formattedDate = formatDate(post.data.pubDate);
+const updatedDate = post.data.updatedDate ? formatDate(post.data.updatedDate) : null;
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} type="article">
+  <article class="post-page">
+    <header class="post-hero">
+      <p class="eyebrow">{formattedDate}</p>
+      <h1>{post.data.title}</h1>
+      <p class="lede">{post.data.description}</p>
+      {updatedDate && <p class="updated-date">Updated {updatedDate}</p>}
+      <ul class="tag-list" aria-label="Post tags">
+        {post.data.tags.map((tag) => <li><a href={getTagPath(tag)}>{tag}</a></li>)}
+      </ul>
+    </header>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

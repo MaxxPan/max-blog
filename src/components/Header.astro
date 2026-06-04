@@ -1,0 +1,28 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { withBase } from '../lib/urls';
+
+const navItems = [
+  { href: withBase('/'), label: 'Home' },
+  { href: withBase('/posts/'), label: 'Posts' },
+  { href: withBase('/tags/'), label: 'Tags' },
+  { href: withBase('/about/'), label: 'About' },
+];
+---
+
+<header class="site-header">
+  <a class="brand" href={withBase('/')} aria-label="Max Blog home">
+    <span class="brand-mark">M</span>
+    <span>Max Blog</span>
+  </a>
+  <nav class="nav-links" aria-label="Primary navigation">
+    {
+      navItems.map((item) => (
+        <a href={item.href} class="nav-link">
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+  <ThemeToggle />
+</header>

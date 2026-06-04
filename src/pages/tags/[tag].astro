@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../lib/format';
+import { getPostPath } from '../../lib/posts';
+import { getTagGroups } from '../../lib/tags';
+
+export async function getStaticPaths() {
+  const groups = await getTagGroups();
+
+  return groups.map((group) => ({
+    params: { tag: group.slug },
+    props: { group },
+  }));
+}
+
+const { group } = Astro.props;
+---
+
+<BaseLayout title={`#${group.tag}`} description={`Posts tagged ${group.tag} on Max Blog.`}>
+  <section class="page-heading">
+    <p class="eyebrow">Tag</p>
+    <h1>#{group.tag}</h1>
+    <p class="lede">
+      {group.posts.length} published {group.posts.length === 1 ? 'post' : 'posts'} in this topic.
+    </p>
+  </section>
+
+  <section class="archive-list" aria-label={`Posts tagged ${group.tag}`}>
+    {
+      group.posts.map((post) => (
+        <article class="archive-item">
+          <a href={getPostPath(post)}>
+            <div>
+              <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+            </div>
+          </a>
+        </article>
+      ))
+    }
+  </section>
+</BaseLayout>
