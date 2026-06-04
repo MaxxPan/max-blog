@@ -126,7 +126,26 @@ Publish this directory:
 dist
 ```
 
-The current `site` value is configured in `astro.config.mjs` as `https://maxxpan.github.io/max-blog/`. Update it if deploying to a custom domain or a different platform URL.
+The current `astro.config.mjs` uses `site: 'https://maxxpan.github.io'` and `base: '/max-blog'`. Update both values if deploying to a custom domain or a different platform URL.
+
+### GitHub Pages
+
+This repository includes `.github/workflows/deploy.yml`.
+
+The workflow runs on pushes to `main` and publishes the `dist` directory through GitHub Pages.
+
+Before the first deployment, configure the repository in GitHub:
+
+- Open `Settings` -> `Pages`.
+- Set the build and deployment source to `GitHub Actions`.
+- Merge this PR into `main`.
+- Wait for the `Deploy` workflow to complete.
+
+The expected site URL is:
+
+```text
+https://maxxpan.github.io/max-blog/
+```
 
 ## CI
 
