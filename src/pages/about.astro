@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/urls';
 
 const skills = ['TypeScript', 'Astro', 'Node.js', 'CI/CD', 'Frontend systems', 'Technical writing'];
 const projects = [
@@ -60,7 +61,7 @@ const projects = [
         <h2>Contact</h2>
         <p>
           Find me on <a href="https://github.com/MaxxPan">GitHub</a>, follow updates
-          through <a href="/rss.xml">RSS</a>, or send a note to
+          through <a href={withBase('/rss.xml')}>RSS</a>, or send a note to
           <a href="mailto:hello@example.com">hello@example.com</a>.
         </p>
       </section>

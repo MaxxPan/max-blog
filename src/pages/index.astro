@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { formatDate } from '../lib/format';
 import { getPostPath, getPublishedPosts } from '../lib/posts';
+import { withBase } from '../lib/urls';
 
 const posts = (await getPublishedPosts()).slice(0, 3);
 ---
@@ -17,7 +18,7 @@ const posts = (await getPublishedPosts()).slice(0, 3);
       </p>
       <div class="social-row" aria-label="Social links">
         <a href="https://github.com/MaxxPan">GitHub</a>
-        <a href="/rss.xml">RSS</a>
+        <a href={withBase('/rss.xml')}>RSS</a>
         <a href="mailto:hello@example.com">Email</a>
       </div>
     </div>

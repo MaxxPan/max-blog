@@ -1,5 +1,6 @@
 import type { CollectionEntry } from 'astro:content';
 import { getPublishedPosts } from './posts';
+import { withBase } from './urls';
 
 export interface TagGroup {
   tag: string;
@@ -12,7 +13,7 @@ export function getTagSlug(tag: string) {
 }
 
 export function getTagPath(tag: string) {
-  return `/tags/${encodeURIComponent(getTagSlug(tag))}/`;
+  return withBase(`/tags/${encodeURIComponent(getTagSlug(tag))}/`);
 }
 
 export async function getTagGroups() {

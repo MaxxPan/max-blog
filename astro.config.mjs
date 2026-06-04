@@ -6,7 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://maxxpan.github.io/max-blog/',
+  site: 'https://maxxpan.github.io',
+  base: '/max-blog',
   integrations: [mdx(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
